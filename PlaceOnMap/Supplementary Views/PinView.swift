@@ -11,22 +11,29 @@ import UIKit
 class PinView: UIView {
     
     var isAnimating: Bool = false
-    var isCentredOnLocation: Bool = false
-    
     var isFirstAppereance: Bool = true
     
     let imageview: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName: "figure.wave")
-        imageView.layer.cornerRadius = 12
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "toilet.fill")
+        imageView.tintColor = .systemYellow
+        imageView.backgroundColor = .white
         return imageView
     }()
     
+    private let view: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 6
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor.systemYellow.cgColor
+        view.backgroundColor = .white
+        return view
+    }()
     
     private let vertLineView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
+       // view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .black
         return view
     }()
@@ -42,33 +49,21 @@ class PinView: UIView {
     }
                                   
     private func configureView() {
-        backgroundColor = .brown
-        addSubview(imageview)
+        addSubview(view)
+        view.addSubview(imageview)
         addSubview(vertLineView)
-        
-        //MARK: - Constraints
-        NSLayoutConstraint.activate([
-        
-            imageview.topAnchor.constraint(equalTo: topAnchor),
-            imageview.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageview.trailingAnchor.constraint(equalTo: trailingAnchor),
-            imageview.heightAnchor.constraint(lessThanOrEqualToConstant:  30),
-            imageview.widthAnchor.constraint(lessThanOrEqualToConstant: 30),
-            
-            vertLineView.centerXAnchor.constraint(equalTo: imageview.centerXAnchor),
-            vertLineView.topAnchor.constraint(equalTo: imageview.bottomAnchor),
-            vertLineView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            vertLineView.heightAnchor.constraint(lessThanOrEqualToConstant:  25),
-            vertLineView.widthAnchor.constraint(lessThanOrEqualToConstant:  2),
-        
-        ])
+        view.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 40, height: 30))
+        imageview.frame = CGRect(origin: CGPoint(x: 5, y: 5), size: CGSize(width: 30, height: 20))
+        vertLineView.frame = CGRect(origin: CGPoint(x: 19, y: 30), size: CGSize(width: 2, height: 25))
+
     }
     
      func configureShadowPath() {
         let shadowSize: CGFloat = 10
         let shadowDistance: CGFloat = 20
         let height = frame.height
-        let newOrigin = CGPoint(x: shadowSize , y: height  + shadowDistance )
+        let width = frame.width / 2
+        let newOrigin = CGPoint(x: width - shadowSize / 2 , y: height  + shadowDistance )
         let contactRect = CGRect(origin: newOrigin, size: CGSize(width: shadowSize, height: shadowSize))
         
         layer.shadowPath = UIBezierPath(ovalIn: contactRect).cgPath

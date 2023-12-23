@@ -25,12 +25,10 @@ final class AddressView: UIView {
     
     let poopImageView: UIImageView = {
         let imageView = UIImageView()
-        let config = UIImage.SymbolConfiguration(pointSize: 23)
+        let config = UIImage.SymbolConfiguration(pointSize: 14)
         imageView.image = UIImage(systemName: "figure.cross.training", withConfiguration: config)
-        imageView.contentMode = .center
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 6
-        imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.systemBlue.cgColor
         return imageView
     }()
@@ -44,11 +42,19 @@ final class AddressView: UIView {
     
     let userLocationButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "location"), for: .normal)
-        button.layer.cornerRadius = 6
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.systemBlue.cgColor
+        //без цвета не видно тень лол
+        button.backgroundColor = .white
+        button.setImage(UIImage(systemName: "location.fill"), for: .normal)
+        button.layer.cornerRadius = 12
+//        button.layer.borderWidth = 2
+//        button.layer.borderColor = UIColor.systemYellow.cgColor
+        button.imageView?.tintColor = UIColor.systemYellow
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.shadowRadius = 16
+        button.layer.shadowColor = UIColor.lightGray.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 8)
+        button.layer.shadowOpacity = 0.2
+        button.layer.masksToBounds = false
         return button
     }()
     
@@ -75,10 +81,10 @@ final class AddressView: UIView {
             
             poopImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             poopImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            poopImageView.widthAnchor.constraint(equalToConstant: 40),
-            poopImageView.heightAnchor.constraint(equalToConstant: 40),
+            poopImageView.widthAnchor.constraint(equalToConstant: 50),
+            poopImageView.heightAnchor.constraint(equalToConstant: 50),
             
-            appNameLabel.leadingAnchor.constraint(equalTo: poopImageView.trailingAnchor, constant: 20),
+            appNameLabel.leadingAnchor.constraint(equalTo: poopImageView.trailingAnchor, constant: 10),
             appNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             appNameLabel.centerYAnchor.constraint(equalTo: poopImageView.centerYAnchor),
             
@@ -86,8 +92,8 @@ final class AddressView: UIView {
             userLocationButton.centerYAnchor.constraint(equalTo: poopImageView.centerYAnchor),
             userLocationButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             userLocationButton.leadingAnchor.constraint(equalTo: appNameLabel.trailingAnchor, constant: 20),
-            userLocationButton.heightAnchor.constraint(equalToConstant: 40),
-            userLocationButton.widthAnchor.constraint(equalToConstant: 40),
+            userLocationButton.heightAnchor.constraint(equalToConstant: 50),
+            userLocationButton.widthAnchor.constraint(equalToConstant: 50),
             
             searchBar.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: self.trailingAnchor),

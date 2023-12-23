@@ -7,15 +7,14 @@
 
 import UIKit
 
-class ShitPhotoCollectionViewCell: UICollectionViewCell {
+class ShitPhotoCollectionViewCell: UICollectionViewListCell {
     
     static let reuseIdentifier = "ShitPhotoCell"
     
     let imageView: UIImageView = {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 16
-        imageView.backgroundColor = .green
+        imageView.backgroundColor = .secondarySystemGroupedBackground
         return imageView
     }()
     

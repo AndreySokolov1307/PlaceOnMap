@@ -34,8 +34,11 @@
 		322451112B111DCC00A99E81 /* ShowPlacesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322451102B111DCC00A99E81 /* ShowPlacesListCell.swift */; };
 		322451132B111DEC00A99E81 /* AddPlaceOnMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322451122B111DEC00A99E81 /* AddPlaceOnMapCell.swift */; };
 		324620402B177823007A47EF /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246203F2B177822007A47EF /* PinView.swift */; };
+		326746CC2B3613E80000216A /* ShitListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326746CB2B3613E80000216A /* ShitListTableViewCell.swift */; };
 		32816B102B1E504E0018B9E1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32816B0F2B1E504E0018B9E1 /* LocationManager.swift */; };
 		32816B122B1E50F10018B9E1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32816B112B1E50F10018B9E1 /* Location.swift */; };
+		32E6DC342B33742A00813FE4 /* NewPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6DC332B33742A00813FE4 /* NewPlaceView.swift */; };
+		32E6DC372B33773E00813FE4 /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6DC362B33773E00813FE4 /* RatingCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,9 +70,12 @@
 		322451102B111DCC00A99E81 /* ShowPlacesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPlacesListCell.swift; sourceTree = "<group>"; };
 		322451122B111DEC00A99E81 /* AddPlaceOnMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceOnMapCell.swift; sourceTree = "<group>"; };
 		3246203F2B177822007A47EF /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
+		326746CB2B3613E80000216A /* ShitListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShitListTableViewCell.swift; sourceTree = "<group>"; };
 		326F1F9D2B2A0F400033850C /* PlaceOnMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaceOnMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32816B0F2B1E504E0018B9E1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		32816B112B1E50F10018B9E1 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		32E6DC332B33742A00813FE4 /* NewPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceView.swift; sourceTree = "<group>"; };
+		32E6DC362B33773E00813FE4 /* RatingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,7 @@
 			children = (
 				322450FE2B10D8D000A99E81 /* HomeView.swift */,
 				321C83F02B1A4E9200F8CA62 /* AddressView.swift */,
+				32E6DC332B33742A00813FE4 /* NewPlaceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -152,6 +159,8 @@
 		322450F12B10CD6A00A99E81 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				326746CA2B3613BB0000216A /* ShitListTableVC */,
+				32E6DC352B33771E00813FE4 /* NewPlaceVIewController */,
 				322451142B111DF300A99E81 /* HomeViewController */,
 			);
 			path = Cells;
@@ -206,6 +215,22 @@
 				322451122B111DEC00A99E81 /* AddPlaceOnMapCell.swift */,
 			);
 			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		326746CA2B3613BB0000216A /* ShitListTableVC */ = {
+			isa = PBXGroup;
+			children = (
+				326746CB2B3613E80000216A /* ShitListTableViewCell.swift */,
+			);
+			path = ShitListTableVC;
+			sourceTree = "<group>";
+		};
+		32E6DC352B33771E00813FE4 /* NewPlaceVIewController */ = {
+			isa = PBXGroup;
+			children = (
+				32E6DC362B33773E00813FE4 /* RatingCell.swift */,
+			);
+			path = NewPlaceVIewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +319,7 @@
 				32816B122B1E50F10018B9E1 /* Location.swift in Sources */,
 				322450FB2B10D16A00A99E81 /* NewPlaceViewController.swift in Sources */,
 				322451132B111DEC00A99E81 /* AddPlaceOnMapCell.swift in Sources */,
+				32E6DC342B33742A00813FE4 /* NewPlaceView.swift in Sources */,
 				3224510C2B10FCA200A99E81 /* Sample.swift in Sources */,
 				322451082B10FAE500A99E81 /* ShitPhotoCollectionViewCell.swift in Sources */,
 				32072A3A2B13D5720041C091 /* PaddingLabel.swift in Sources */,
@@ -304,6 +330,8 @@
 				32072A3C2B13E6390041C091 /* ShitCountCell.swift in Sources */,
 				322451112B111DCC00A99E81 /* ShowPlacesListCell.swift in Sources */,
 				324620402B177823007A47EF /* PinView.swift in Sources */,
+				326746CC2B3613E80000216A /* ShitListTableViewCell.swift in Sources */,
+				32E6DC372B33773E00813FE4 /* RatingCell.swift in Sources */,
 				322450F92B10D15000A99E81 /* ShitListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

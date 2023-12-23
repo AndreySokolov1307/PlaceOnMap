@@ -18,7 +18,7 @@ class ShitCountCell: UICollectionViewCell {
    
     
     let shitCountLabel: PaddingLabel = {
-       let label = PaddingLabel(topInset: 0, bottomInset: 0, leftInset: 16, rightInset: 16)
+       let label = PaddingLabel(topInset: 0, bottomInset: 0, leftInset: 20, rightInset: 20)
         
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false

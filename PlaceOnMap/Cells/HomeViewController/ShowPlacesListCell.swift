@@ -15,7 +15,7 @@ class ShowPlacesListCell: UICollectionViewCell {
     
     private let showPlacesListLabel: UILabel = {
        let label = UILabel()
-        label.text = "Show 'stat' places list!"
+        label.text = "Show 'poop' places list!"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label 
@@ -95,9 +95,6 @@ class ShowPlacesListCell: UICollectionViewCell {
             hStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             hStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             hStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
-            
-        
-
         ])
     }
 }

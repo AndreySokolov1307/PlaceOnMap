@@ -19,6 +19,7 @@ class FileCache {
             shitPlaces.append(place)
         } else {
             if let index = shitPlaces.firstIndex(where: { $0.id == place.id }) {
+                print("midified")
                 shitPlaces.remove(at: index)
                 shitPlaces.insert(place, at: index)
             }
@@ -32,33 +33,22 @@ class FileCache {
     func saveAllPlaces(to file: String = "shitPlaces") {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory,
                                                           in: .userDomainMask).first!
-        let archieveURL = documentsDirectory.appendingPathComponent(file).appendingPathExtension("json")
-    
-        let jsonArray = shitPlaces.map { $0.json }
+        let archieveURL = documentsDirectory.appendingPathComponent("shit_places").appendingPathExtension("plist")
+        let propertyListEncoder = PropertyListEncoder()
+        let encodedPlaces = try? propertyListEncoder.encode(shitPlaces)
         
-        guard let data = try? JSONSerialization.data(withJSONObject: jsonArray, options: [])
-        else { print("Could not recieve data form json object"); return }
+        try? encodedPlaces?.write(to: archieveURL, options: .noFileProtection)
         
-        do {
-            try data.write(to: archieveURL)
-        } catch {
-            print("Couldnot write data to file")
-        }
-       
     }
     
     func loadAllPlaces(from file: String = "shitPlaces") {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory,
                                                           in: .userDomainMask).first!
-        let archieveURL = documentsDirectory.appendingPathComponent(file).appendingPathExtension("json")
+        let archieveURL = documentsDirectory.appendingPathComponent("shit_places").appendingPathExtension("plist")
+        let propertyListDecoder = PropertyListDecoder()
         
-        guard let retrievedJsonData = try? Data(contentsOf: archieveURL)
-        else {print("Could not retrieve json data"); return}
-        
-        guard let jsonObject = try? JSONSerialization.jsonObject(with: retrievedJsonData,
-                                                                 options: []) as? [Any]
-        else {print("Could not recieve json object"); return}
-        
-        shitPlaces = jsonObject.compactMap(ShitPlace.parse)
+        if let retrievedNotesData = try? Data.init(contentsOf: archieveURL), let decodedPlaces = try? propertyListDecoder.decode(Array<ShitPlace>.self, from: retrievedNotesData) {
+            self.shitPlaces = decodedPlaces
+        }
     }
 }

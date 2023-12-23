@@ -20,8 +20,7 @@ class LocationManager: NSObject {
                 completion([])
                 return
             }
-            print(places.count)
-            
+          
             let models: [Location] = places.compactMap({ place in
                 var name = ""
                 if let locationName = place.name {
@@ -41,11 +40,41 @@ class LocationManager: NSObject {
                 }
                 
                 let result = Location(title: name,
-                                      coordinates: place.location?.coordinate)
+                                      coordinates: Coordinate(latitude: (place.location?.coordinate.latitude)!, longitude: (place.location?.coordinate.longitude)!))
                 return result
             })
             
             completion(models)
         }
     }
+    
+//    public func getAddress(from coordinates: CLLocation, completion: @escaping (Location) -> Void) {
+//        let geocoder = CLGeocoder()
+//        
+//        geocoder.reverseGeocodeLocation(coordinates) { places, error in
+//            let address: [Location] = (places?.compactMap({ place in
+//                var name = ""
+//                if let locationName = place.name {
+//                    name += locationName
+//                }
+//                
+//                if let adminRegion = place.administrativeArea {
+//                    name += ", \(adminRegion)"
+//                }
+//                
+//                if let locality = place.locality {
+//                    name += ", \(locality)"
+//                }
+//                
+//                if let country = place.country {
+//                    name += ", \(country)"
+//                }
+//                
+//                let result = Location(title: name,
+//                                      coordinates: Coordinate(latitude: (place.location?.coordinate.latitude)!, longitude: (place.location?.coordinate.longitude)!))
+//                return result
+//            }))!
+//            completion(address.first!)
+//        }
+//    }
 }

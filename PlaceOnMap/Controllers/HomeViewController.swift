@@ -26,8 +26,6 @@ final class HomeViewController: UIViewController {
         navigationItem.title = "Where did you ..?"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
-    
-        
         //Cells registration
         homeView.collectionView.register(ShitCountCell.self, forCellWithReuseIdentifier: ShitCountCell.reuseIdentifier)
         homeView.collectionView.register(ShitPhotoCollectionViewCell.self, forCellWithReuseIdentifier: ShitPhotoCollectionViewCell.reuseIdentifier)
@@ -43,6 +41,12 @@ final class HomeViewController: UIViewController {
         homeView.collectionView.setCollectionViewLayout(createLayout(), animated: true)
         homeView.collectionView.isScrollEnabled = false
         
+        FileCache.shared.loadAllPlaces(from: "shit")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        homeView.collectionView.reloadData()
     }
     
     private func createLayout() -> UICollectionViewLayout {
@@ -53,7 +57,6 @@ final class HomeViewController: UIViewController {
                 
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
                 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.1))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
@@ -135,10 +138,7 @@ final class HomeViewController: UIViewController {
     
     @objc func didTapSortButton() {
      
-        let cell = homeView.collectionView.cellForItem(at: ShitCountCell.indexPath!) as! ShitCountCell
-        cell.shitCountLabel.text = String(Int.random(in: 0...100))
-        
-        print("pizda")
+       
     }
  
 }
@@ -151,7 +151,7 @@ extension HomeViewController: UICollectionViewDelegate {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionViewHeader.reuseIdentifier, for: indexPath) as! CollectionViewHeader
         
-        header.label.text = "Map Header"
+        header.label.text = "Places where you ..."
         return header
     }
     
@@ -199,11 +199,13 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
             return 1
+        } else if section == 1 {
+            let photos = FileCache.shared.shitPlaces.compactMap { $0.photo?.imageData }
+            return photos.count
         } else if section == 2 {
             return 2
-        } else {
-            let photos = Sample.sample.compactMap { $0.photo }
-            return photos.count
+        } else  {
+            return FileCache.shared.shitPlaces.count
         }
     }
     
@@ -215,12 +217,20 @@ extension HomeViewController: UICollectionViewDataSource {
 
             cell.sortButton.menu = configureDropDownSortButtonMenu()
             cell.sortButton.showsMenuAsPrimaryAction = true
+            cell.shitCountLabel.text = "For last day u pooped \(FileCache.shared.shitPlaces.count) times"
             
             return cell
         case 1:
           let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: ShitPhotoCollectionViewCell.reuseIdentifier, for: indexPath) as! ShitPhotoCollectionViewCell
             
-            cell.imageView.image = Sample.sample[indexPath.item].photo
+            var photos = FileCache.shared.shitPlaces.compactMap { $0.photo?.getImage() }
+            cell.imageView.image = photos[indexPath.row]
+            cell.imageView.contentMode = .scaleAspectFit
+            cell.imageView.backgroundColor = .secondarySystemGroupedBackground
+            cell.layer.borderWidth = 1
+            cell.layer.borderColor = UIColor.systemYellow.cgColor
+            cell.layer.cornerRadius = 16
+            cell.layer.masksToBounds = true
             
             return cell
         case 2:
@@ -230,6 +240,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
                 ShowPlacesListCell.indexPath = indexPath
                 cell.configureShadow()
+                cell.numberOfPlacesLabel.text = "\(FileCache.shared.shitPlaces.count) places in total"
                 
                 return cell
             case 1:
@@ -246,13 +257,13 @@ extension HomeViewController: UICollectionViewDataSource {
         case 3:
             let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: MapCollectionViewCell.reuseIdentifier, for: indexPath) as! MapCollectionViewCell
               
-            let coordinate = CLLocationCoordinate2D(latitude: Sample.sample[indexPath.item].place.latitude, longitude: Sample.sample[indexPath.item].place.longitude)
+            let coordinate = FileCache.shared.shitPlaces[indexPath.item].place
             let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
+            annotation.coordinate = coordinate.locationCoordinates()
             cell.mapView.addAnnotation(annotation)
             
             let span =  MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.15)
-            cell.mapView.setRegion(MKCoordinateRegion(center: coordinate, span: span), animated: true)
+            cell.mapView.setRegion(MKCoordinateRegion(center: coordinate.locationCoordinates(), span: span), animated: true)
             cell.mapView.isUserInteractionEnabled = false
             
             return cell
@@ -268,6 +279,7 @@ extension HomeViewController: UICollectionViewDataSource {
         return menu
     }
     
+    //TODO: - Ну сделать сортировку в день неделю месяц типааааа
     private func menuHandler(action: UIAction) {
         print("menuHAndler")
     }

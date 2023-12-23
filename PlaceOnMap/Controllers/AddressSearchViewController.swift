@@ -54,7 +54,10 @@ class AddressSearchViewController: UIViewController {
 //MARK: - UISearchBarDelegate
 
 extension AddressSearchViewController: UISearchBarDelegate {
-    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
 }
 
 
@@ -103,7 +106,7 @@ extension AddressSearchViewController: UITableViewDataSource {
         //notify mapConroller
         addressView.searchBar.searchTextField.resignFirstResponder()
         let coordinate = locations[indexPath.row].coordinates
-        delegate?.searchViewController(self, didSelectLoactionWith: coordinate)
+        delegate?.searchViewController(self, didSelectLoactionWith: coordinate?.locationCoordinates())
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
