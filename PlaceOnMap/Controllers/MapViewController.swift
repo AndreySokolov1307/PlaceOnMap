@@ -16,10 +16,7 @@ final class MapViewController: UIViewController {
     private lazy var addressSearchViewController = AddressSearchViewController()
     private let locationManager = CLLocationManager()
     private let spanDelta: Double = 0.01
-    private var mapOffset: CGFloat {
-        let thirdAndAHalf = myMapView.frame.height / 6.5
-       return thirdAndAHalf
-    }
+    private var mapOffset: CGFloat = 300
     
     override func loadView() {
         myMapView = MKMapView()
@@ -35,18 +32,8 @@ final class MapViewController: UIViewController {
         
         checkLocationServices()
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("will diss")
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("will appear")
-    }
-
-
-//MARK:  Setting up locationManager and authorization
     
+//MARK:  Setting up locationManager and authorization
     private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -70,6 +57,7 @@ final class MapViewController: UIViewController {
             break
         case .denied:
             //Show allert with turn on instruction
+            showAllertWithLocationTurnOnInstruction()
             break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
@@ -87,21 +75,26 @@ final class MapViewController: UIViewController {
   
     private func centerViewOnUserLocation() {
         if let location = locationManager.location?.coordinate{
-            var point = myMapView.convert(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),
-                                          toPointTo: myMapView)
-            //Добавляем к У оффсет чтобы точка пользователя сместилась вверх
-            point.y += mapOffset
-            let offsetLocation = myMapView.convert(point, toCoordinateFrom: myMapView)
+            let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             
-           
-            let region = MKCoordinateRegion(center: offsetLocation, span: MKCoordinateSpan(latitudeDelta: spanDelta, longitudeDelta: spanDelta))
+            let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: spanDelta, longitudeDelta: spanDelta))
             myMapView.setRegion(region, animated: true)
-           
         }
+    }
+    
+    private func showAllertWithLocationTurnOnInstruction() {
+        let alert = UIAlertController(title: "Change location settings.", message: "Your location is turned off. Go to Settings -> Privacy -> Location Servises and allow location usage.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Got it", style: .cancel))
+        
+        if let presentedVC = self.presentedViewController {
+            presentedVC.present(alert, animated: true)
+        }
+       
     }
     
     private func setupMapView() {
         myMapView.delegate = self
+        myMapView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: mapOffset, right: 0)
     }
     
     private func showAddressSearchVCAsASheet() {
@@ -143,8 +136,8 @@ final class MapViewController: UIViewController {
         let originY = myMapView.center.y
         
         //TODO: - fix that shit, сделать как было раньше - чуть выше, когда нажимает адресс то показывать анотацию и скрывать эту хуйню, когда нажимает плюсик то переходить на некс экран, а то заебало конткретно это делать, когда нажимает на локацию в таблице вылазиет ясейка с адрессом и дискложуре индикатором б или попробовать вернуться к оффсету и добавить разницу игрек хз короче, можно сделать на нажатие локации отдельную анимацию что пин выпадает сверху вних на локацию вроде норм вариант жиесть
-            let viewOrigin = CGPoint(x: originX - 20 , y: originY - 55 - mapOffset )
-            
+        //UPD: vrode sdelal что ровно на точку встает охуеть
+        let viewOrigin = CGPoint(x: originX - 20 , y: originY - 27.5 - mapOffset / 2 )
             pinView.frame = CGRect(origin: viewOrigin, size: CGSize(width: 40, height: 55))
     }
     
@@ -251,7 +244,8 @@ extension MapViewController : MKMapViewDelegate {
 
 extension MapViewController: AddressSearchViewControllerDelegate {
     func didTapLocationButton() {
-        centerViewOnUserLocation()
+        //centerViewOnUserLocation()
+        checkLocationAuthorization()
     }
     
     func searchViewController(_ vc: AddressSearchViewController, didSelectLoactionWith coordinates: CLLocationCoordinate2D?) {
@@ -263,14 +257,8 @@ extension MapViewController: AddressSearchViewControllerDelegate {
         let pin = MKPointAnnotation()
         pin.coordinate = coordinates
         myMapView.addAnnotation(pin)
-        var point = myMapView.convert(CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude),
-                                      toPointTo: myMapView)
-        //Добавляем к У оффсет чтобы точка пользователя сместилась вверх
-        point.y += mapOffset
-        let offsetLocation = myMapView.convert(point, toCoordinateFrom: myMapView)
         
-      
-        let region = MKCoordinateRegion(center: offsetLocation, span: MKCoordinateSpan(latitudeDelta: spanDelta, longitudeDelta: spanDelta))
+        let region = MKCoordinateRegion(center: coordinates, span: MKCoordinateSpan(latitudeDelta: spanDelta, longitudeDelta: spanDelta))
         myMapView.setRegion(region, animated: true)
     }
 }

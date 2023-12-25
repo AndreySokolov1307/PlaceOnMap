@@ -46,8 +46,8 @@
             filePath = "PlaceOnMap/Controllers/MapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "MapViewController"
             landmarkType = "21">
          </BreakpointContent>

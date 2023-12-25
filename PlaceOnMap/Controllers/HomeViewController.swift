@@ -15,6 +15,7 @@ final class HomeViewController: UIViewController {
     private let showPlacesListCell = ShowPlacesListCell()
     private let addPlaceOnMapCell
     = AddPlaceOnMapCell()
+    private let spanDelta: Double = 0.01
     
     override func loadView() {
         homeView = HomeView()
@@ -260,9 +261,11 @@ extension HomeViewController: UICollectionViewDataSource {
             let coordinate = FileCache.shared.shitPlaces[indexPath.item].place
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate.locationCoordinates()
+            cell.mapView.removeAnnotations(cell.mapView.annotations)
             cell.mapView.addAnnotation(annotation)
             
-            let span =  MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.15)
+            
+            let span =  MKCoordinateSpan(latitudeDelta: spanDelta, longitudeDelta: spanDelta)
             cell.mapView.setRegion(MKCoordinateRegion(center: coordinate.locationCoordinates(), span: span), animated: true)
             cell.mapView.isUserInteractionEnabled = false
             
@@ -283,8 +286,10 @@ extension HomeViewController: UICollectionViewDataSource {
     private func menuHandler(action: UIAction) {
         print("menuHAndler")
     }
-    
 }
+
+//TODO: - annotationview
+
 
 
 

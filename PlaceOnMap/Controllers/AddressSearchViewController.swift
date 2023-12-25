@@ -66,7 +66,6 @@ extension AddressSearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-        
         if let text = textField.text, !text.isEmpty {
             LocationManager.shared.findLocations(with: text) { [weak self] locations in
                 DispatchQueue.main.async {
