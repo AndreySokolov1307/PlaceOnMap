@@ -29,20 +29,15 @@ final class HomeView: UIView {
     
     private func configureView() {
         backgroundColor = .systemBackground
- 
         addSubview(collectionView)
         
         //MARK: - Constraints
         
         NSLayoutConstraint.activate([
-        
             collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            
         ])
     }
-    
-    
 }

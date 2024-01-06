@@ -107,10 +107,10 @@ extension NewPlaceViewController: UICollectionViewDataSource {
         switch section {
             //Address
         case 0:
-            return 2
+            return 1
             //Photo
         case 1:
-            if let selectedImage = selectedImage {
+            if let _ = selectedImage {
                 return 2
             } else {
                 return 1
@@ -132,13 +132,8 @@ extension NewPlaceViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "listCell", for: indexPath) as! UICollectionViewListCell
             
             var content = UIListContentConfiguration.valueCell()
-            if indexPath.item == 0 {
-
-                content.text = shitPlace.address!
-            } else {
-                content.text = "Change address"
-                cell.accessories = [.disclosureIndicator()]
-            }
+            content.text = shitPlace.address!
+          
             cell.contentConfiguration = content
             
             return cell
@@ -184,6 +179,8 @@ extension NewPlaceViewController: UICollectionViewDataSource {
             cell.mapView.setRegion(MKCoordinateRegion(center: coordinate, span: span), animated: true)
             cell.mapView.isUserInteractionEnabled = false
             cell.mapView.heightAnchor.constraint(greaterThanOrEqualToConstant: 44 * 3).isActive = true
+            cell.mapView.delegate = self
+            
             return cell
         case 3:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RatingCell.reuseIdentifier, for: indexPath) as! RatingCell
@@ -279,12 +276,23 @@ extension NewPlaceViewController: UICollectionViewDelegate {
     }    
 }
 
-extension NewPlaceViewController: UITextFieldDelegate {
-    
-}
-
-extension NewPlaceViewController: UITextViewDelegate {
-    
+extension NewPlaceViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "shit")
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "shit")
+        } else {
+            annotationView?.annotation = annotation
+        }
+        annotationView?.image = "💩".textToImage()
+        
+        return annotationView
+    }
 }
 
 extension NewPlaceViewController: UIImagePickerControllerDelegate {

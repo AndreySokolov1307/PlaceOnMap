@@ -15,6 +15,7 @@ class ShitPhotoCollectionViewCell: UICollectionViewListCell {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .secondarySystemGroupedBackground
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     

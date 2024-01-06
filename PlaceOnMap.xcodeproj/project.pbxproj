@@ -16,7 +16,6 @@
 		322450DA2B10C57B00A99E81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322450D92B10C57B00A99E81 /* AppDelegate.swift */; };
 		322450DC2B10C57B00A99E81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322450DB2B10C57B00A99E81 /* SceneDelegate.swift */; };
 		322450DE2B10C57B00A99E81 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322450DD2B10C57B00A99E81 /* HomeViewController.swift */; };
-		322450E32B10C58300A99E81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 322450E22B10C58300A99E81 /* Assets.xcassets */; };
 		322450E62B10C58300A99E81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 322450E42B10C58300A99E81 /* LaunchScreen.storyboard */; };
 		322450F52B10CECB00A99E81 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322450F42B10CECB00A99E81 /* TabBarController.swift */; };
 		322450F72B10D0FE00A99E81 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322450F62B10D0FE00A99E81 /* MapViewController.swift */; };
@@ -34,6 +33,11 @@
 		322451112B111DCC00A99E81 /* ShowPlacesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322451102B111DCC00A99E81 /* ShowPlacesListCell.swift */; };
 		322451132B111DEC00A99E81 /* AddPlaceOnMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322451122B111DEC00A99E81 /* AddPlaceOnMapCell.swift */; };
 		324620402B177823007A47EF /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246203F2B177822007A47EF /* PinView.swift */; };
+		324AE1B42B49B19100E8995D /* DetailPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AE1B32B49B19100E8995D /* DetailPhotoViewController.swift */; };
+		324AE1B62B49B29700E8995D /* DetailPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AE1B52B49B29700E8995D /* DetailPhotoView.swift */; };
+		324AE1B82B49C1C700E8995D /* String + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AE1B72B49C1C700E8995D /* String + extension.swift */; };
+		324AE1BA2B49C53700E8995D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 324AE1B92B49C53700E8995D /* Assets.xcassets */; };
+		324AE1BC2B49D2F200E8995D /* SimpleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AE1BB2B49D2F200E8995D /* SimpleMapViewController.swift */; };
 		326746CC2B3613E80000216A /* ShitListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326746CB2B3613E80000216A /* ShitListTableViewCell.swift */; };
 		32816B102B1E504E0018B9E1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32816B0F2B1E504E0018B9E1 /* LocationManager.swift */; };
 		32816B122B1E50F10018B9E1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32816B112B1E50F10018B9E1 /* Location.swift */; };
@@ -51,7 +55,6 @@
 		322450D92B10C57B00A99E81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		322450DB2B10C57B00A99E81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		322450DD2B10C57B00A99E81 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		322450E22B10C58300A99E81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		322450E52B10C58300A99E81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		322450E72B10C58300A99E81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		322450F42B10CECB00A99E81 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -70,6 +73,11 @@
 		322451102B111DCC00A99E81 /* ShowPlacesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPlacesListCell.swift; sourceTree = "<group>"; };
 		322451122B111DEC00A99E81 /* AddPlaceOnMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceOnMapCell.swift; sourceTree = "<group>"; };
 		3246203F2B177822007A47EF /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
+		324AE1B32B49B19100E8995D /* DetailPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoViewController.swift; sourceTree = "<group>"; };
+		324AE1B52B49B29700E8995D /* DetailPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoView.swift; sourceTree = "<group>"; };
+		324AE1B72B49C1C700E8995D /* String + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + extension.swift"; sourceTree = "<group>"; };
+		324AE1B92B49C53700E8995D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		324AE1BB2B49D2F200E8995D /* SimpleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMapViewController.swift; sourceTree = "<group>"; };
 		326746CB2B3613E80000216A /* ShitListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShitListTableViewCell.swift; sourceTree = "<group>"; };
 		326F1F9D2B2A0F400033850C /* PlaceOnMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaceOnMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32816B0F2B1E504E0018B9E1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -127,7 +135,7 @@
 			children = (
 				322450E72B10C58300A99E81 /* Info.plist */,
 				322450E42B10C58300A99E81 /* LaunchScreen.storyboard */,
-				322450E22B10C58300A99E81 /* Assets.xcassets */,
+				324AE1B92B49C53700E8995D /* Assets.xcassets */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -138,6 +146,7 @@
 				322450FE2B10D8D000A99E81 /* HomeView.swift */,
 				321C83F02B1A4E9200F8CA62 /* AddressView.swift */,
 				32E6DC332B33742A00813FE4 /* NewPlaceView.swift */,
+				324AE1B52B49B29700E8995D /* DetailPhotoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -145,13 +154,15 @@
 		322450F02B10CD6300A99E81 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				324AE1B22B49B13400E8995D /* TODO controllers */,
 				322450F42B10CECB00A99E81 /* TabBarController.swift */,
 				322450DD2B10C57B00A99E81 /* HomeViewController.swift */,
 				322450F62B10D0FE00A99E81 /* MapViewController.swift */,
 				322450F82B10D15000A99E81 /* ShitListTableViewController.swift */,
 				322450FA2B10D16A00A99E81 /* NewPlaceViewController.swift */,
-				322450FC2B10D1E100A99E81 /* WelcomeViewController.swift */,
 				321C83F22B1A57D600F8CA62 /* AddressSearchViewController.swift */,
+				324AE1B32B49B19100E8995D /* DetailPhotoViewController.swift */,
+				324AE1BB2B49D2F200E8995D /* SimpleMapViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -190,6 +201,7 @@
 			children = (
 				322451032B10EDF000A99E81 /* Date + extension.swift */,
 				32072A372B13B5830041C091 /* Cell + cellShadow.swift */,
+				324AE1B72B49C1C700E8995D /* String + extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -215,6 +227,14 @@
 				322451122B111DEC00A99E81 /* AddPlaceOnMapCell.swift */,
 			);
 			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		324AE1B22B49B13400E8995D /* TODO controllers */ = {
+			isa = PBXGroup;
+			children = (
+				322450FC2B10D1E100A99E81 /* WelcomeViewController.swift */,
+			);
+			path = "TODO controllers";
 			sourceTree = "<group>";
 		};
 		326746CA2B3613BB0000216A /* ShitListTableVC */ = {
@@ -291,8 +311,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				324AE1BA2B49C53700E8995D /* Assets.xcassets in Resources */,
 				322450E62B10C58300A99E81 /* LaunchScreen.storyboard in Resources */,
-				322450E32B10C58300A99E81 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,9 +328,11 @@
 				322450FF2B10D8D000A99E81 /* HomeView.swift in Sources */,
 				322450DE2B10C57B00A99E81 /* HomeViewController.swift in Sources */,
 				322450FD2B10D1E100A99E81 /* WelcomeViewController.swift in Sources */,
+				324AE1BC2B49D2F200E8995D /* SimpleMapViewController.swift in Sources */,
 				322450F52B10CECB00A99E81 /* TabBarController.swift in Sources */,
 				3224510F2B1108C100A99E81 /* CollectionViewHeader.swift in Sources */,
 				321C83F12B1A4E9200F8CA62 /* AddressView.swift in Sources */,
+				324AE1B62B49B29700E8995D /* DetailPhotoView.swift in Sources */,
 				322450DA2B10C57B00A99E81 /* AppDelegate.swift in Sources */,
 				322451012B10E7FD00A99E81 /* ShitPlace.swift in Sources */,
 				3224510A2B10FC4300A99E81 /* MapCollectionViewCell.swift in Sources */,
@@ -319,6 +341,7 @@
 				32816B122B1E50F10018B9E1 /* Location.swift in Sources */,
 				322450FB2B10D16A00A99E81 /* NewPlaceViewController.swift in Sources */,
 				322451132B111DEC00A99E81 /* AddPlaceOnMapCell.swift in Sources */,
+				324AE1B82B49C1C700E8995D /* String + extension.swift in Sources */,
 				32E6DC342B33742A00813FE4 /* NewPlaceView.swift in Sources */,
 				3224510C2B10FCA200A99E81 /* Sample.swift in Sources */,
 				322451082B10FAE500A99E81 /* ShitPhotoCollectionViewCell.swift in Sources */,
@@ -332,6 +355,7 @@
 				324620402B177823007A47EF /* PinView.swift in Sources */,
 				326746CC2B3613E80000216A /* ShitListTableViewCell.swift in Sources */,
 				32E6DC372B33773E00813FE4 /* RatingCell.swift in Sources */,
+				324AE1B42B49B19100E8995D /* DetailPhotoViewController.swift in Sources */,
 				322450F92B10D15000A99E81 /* ShitListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

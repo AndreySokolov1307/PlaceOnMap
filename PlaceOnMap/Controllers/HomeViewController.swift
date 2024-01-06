@@ -186,6 +186,27 @@ extension HomeViewController: UICollectionViewDelegate {
                
             }
         }
+        
+        if indexPath.section == 1 {
+            let cell = collectionView.cellForItem(at: indexPath) as! ShitPhotoCollectionViewCell
+            let vc = DetailPhotoViewController(image: cell.imageView.image!)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        if indexPath.section == 3 {
+            let vc = SimpleMapViewController()
+            let coordinate = FileCache.shared.shitPlaces[indexPath.item].place
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate.locationCoordinates()
+            vc.mapView.removeAnnotations(vc.mapView.annotations)
+            vc.mapView.addAnnotation(annotation)
+            
+            let span =  MKCoordinateSpan(latitudeDelta: spanDelta, longitudeDelta: spanDelta)
+            vc.mapView.setRegion(MKCoordinateRegion(center: coordinate.locationCoordinates(), span: span), animated: true)
+            
+            let nav = UINavigationController(rootViewController: vc)
+            self.present(nav, animated: true)
+        }
     }
 }
 
@@ -218,7 +239,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
             cell.sortButton.menu = configureDropDownSortButtonMenu()
             cell.sortButton.showsMenuAsPrimaryAction = true
-            cell.shitCountLabel.text = "For last day u pooped \(FileCache.shared.shitPlaces.count) times"
+            cell.shitCountLabel.text = "For last day you pooped \(FileCache.shared.shitPlaces.count) times"
             
             return cell
         case 1:
@@ -226,8 +247,6 @@ extension HomeViewController: UICollectionViewDataSource {
             
             var photos = FileCache.shared.shitPlaces.compactMap { $0.photo?.getImage() }
             cell.imageView.image = photos[indexPath.row]
-            cell.imageView.contentMode = .scaleAspectFit
-            cell.imageView.backgroundColor = .secondarySystemGroupedBackground
             cell.layer.borderWidth = 1
             cell.layer.borderColor = UIColor.systemYellow.cgColor
             cell.layer.cornerRadius = 16
@@ -245,7 +264,6 @@ extension HomeViewController: UICollectionViewDataSource {
                 
                 return cell
             case 1:
-       
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddPlaceOnMapCell.reuseIdentifier, for: indexPath) as!
                 AddPlaceOnMapCell
                 AddPlaceOnMapCell.indexPath = indexPath
@@ -268,6 +286,7 @@ extension HomeViewController: UICollectionViewDataSource {
             let span =  MKCoordinateSpan(latitudeDelta: spanDelta, longitudeDelta: spanDelta)
             cell.mapView.setRegion(MKCoordinateRegion(center: coordinate.locationCoordinates(), span: span), animated: true)
             cell.mapView.isUserInteractionEnabled = false
+            cell.mapView.delegate = self
             
             return cell
             
@@ -288,7 +307,24 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 }
 
-//TODO: - annotationview
+extension HomeViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "shit")
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "shit")
+        } else {
+            annotationView?.annotation = annotation
+        }
+        annotationView?.image = "💩".textToImage()
+        
+        return annotationView
+    }
+}
 
 
 

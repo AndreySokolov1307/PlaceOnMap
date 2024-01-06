@@ -32,6 +32,8 @@ class ShitListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 1
         label.textAlignment = .left
+        label.textColor = .systemGray
+        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     

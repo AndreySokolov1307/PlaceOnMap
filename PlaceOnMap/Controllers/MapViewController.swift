@@ -135,15 +135,15 @@ final class MapViewController: UIViewController {
         let originX = myMapView.frame.midX
         let originY = myMapView.center.y
         
-        //TODO: - fix that shit, сделать как было раньше - чуть выше, когда нажимает адресс то показывать анотацию и скрывать эту хуйню, когда нажимает плюсик то переходить на некс экран, а то заебало конткретно это делать, когда нажимает на локацию в таблице вылазиет ясейка с адрессом и дискложуре индикатором б или попробовать вернуться к оффсету и добавить разницу игрек хз короче, можно сделать на нажатие локации отдельную анимацию что пин выпадает сверху вних на локацию вроде норм вариант жиесть
         //UPD: vrode sdelal что ровно на точку встает охуеть
         let viewOrigin = CGPoint(x: originX - 20 , y: originY - 27.5 - mapOffset / 2 )
             pinView.frame = CGRect(origin: viewOrigin, size: CGSize(width: 40, height: 55))
     }
     
     private func setupNavBar() {
-        navigationItem.title = "Add "
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapGovnoButton))
+        navigationItem.title = "Look for place"
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add place", style: .plain, target: self, action: #selector(didTapGovnoButton))
         navigationItem.largeTitleDisplayMode = .never
     
         //create back button to add own Action(dissmiss AdressSearchVC)
@@ -187,7 +187,6 @@ final class MapViewController: UIViewController {
             }
         }
     }
-    
 }
 
 //MARK: - MKMapViewDelegate
@@ -238,13 +237,29 @@ extension MapViewController : MKMapViewDelegate {
             }
         }
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "shit")
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "shit")
+        } else {
+            annotationView?.annotation = annotation
+        }
+        annotationView?.image = "💩".textToImage()
+        
+        return annotationView
+    }
 }
 
 //MARK: - AddressSearchViewControllerDelegate
 
 extension MapViewController: AddressSearchViewControllerDelegate {
     func didTapLocationButton() {
-        //centerViewOnUserLocation()
         checkLocationAuthorization()
     }
     

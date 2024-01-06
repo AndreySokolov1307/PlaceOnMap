@@ -26,6 +26,7 @@ class ShowPlacesListCell: UICollectionViewCell {
         label.text = "25 places total"
         label.font = UIFont.systemFont(ofSize: 10)
         label.numberOfLines = 1
+        label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
