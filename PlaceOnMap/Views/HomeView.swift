@@ -23,7 +23,7 @@ final class HomeView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
-        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+       // collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         return collectionView
     }()
     

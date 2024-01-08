@@ -16,6 +16,7 @@ final class HomeViewController: UIViewController {
     private let addPlaceOnMapCell
     = AddPlaceOnMapCell()
     private let spanDelta: Double = 0.01
+    private var isAddNewPlaceOnMapCellFirstAppearance = true
     
     override func loadView() {
         homeView = HomeView()
@@ -24,9 +25,33 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Where did you ..?"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
+        setupNavBar()
+        setupCollectionView()
+        
+        FileCache.shared.loadAllPlaces(from: "shit")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        homeView.collectionView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let cell = homeView.collectionView.cellForItem(at: IndexPath(item: 1, section: 2)) as! AddPlaceOnMapCell
+        if isAddNewPlaceOnMapCellFirstAppearance {
+            cell.addShadowAnimation()
+        }
+        isAddNewPlaceOnMapCellFirstAppearance = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let cell = homeView.collectionView.cellForItem(at: IndexPath(item: 1, section: 2)) as! AddPlaceOnMapCell
+        cell.layer.removeAllAnimations()
+    }
+    
+    private func setupCollectionView() {
         //Cells registration
         homeView.collectionView.register(ShitCountCell.self, forCellWithReuseIdentifier: ShitCountCell.reuseIdentifier)
         homeView.collectionView.register(ShitPhotoCollectionViewCell.self, forCellWithReuseIdentifier: ShitPhotoCollectionViewCell.reuseIdentifier)
@@ -40,14 +65,13 @@ final class HomeViewController: UIViewController {
         homeView.collectionView.delegate = self
         homeView.collectionView.dataSource = self
         homeView.collectionView.setCollectionViewLayout(createLayout(), animated: true)
-        homeView.collectionView.isScrollEnabled = false
-        
-        FileCache.shared.loadAllPlaces(from: "shit")
+        homeView.collectionView.isScrollEnabled = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        homeView.collectionView.reloadData()
+    private func setupNavBar() {
+        navigationItem.title = "Where did you ..?"
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)]
     }
     
     private func createLayout() -> UICollectionViewLayout {

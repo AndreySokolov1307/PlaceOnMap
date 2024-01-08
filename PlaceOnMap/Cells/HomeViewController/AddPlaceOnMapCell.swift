@@ -16,6 +16,7 @@ class AddPlaceOnMapCell: UICollectionViewCell {
     private let newPlaceLabel: UILabel = {
        let label = UILabel()
         label.text = "Add new place on map!"
+        label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

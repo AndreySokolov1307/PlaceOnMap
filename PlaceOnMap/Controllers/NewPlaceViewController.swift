@@ -177,7 +177,7 @@ extension NewPlaceViewController: UICollectionViewDataSource {
             
             let span =  MKCoordinateSpan(latitudeDelta: spanDelta, longitudeDelta: spanDelta)
             cell.mapView.setRegion(MKCoordinateRegion(center: coordinate, span: span), animated: true)
-            cell.mapView.isUserInteractionEnabled = false
+            cell.mapView.isUserInteractionEnabled = true
             cell.mapView.heightAnchor.constraint(greaterThanOrEqualToConstant: 44 * 3).isActive = true
             cell.mapView.delegate = self
             

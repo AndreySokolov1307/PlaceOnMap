@@ -43,6 +43,7 @@
 		32816B122B1E50F10018B9E1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32816B112B1E50F10018B9E1 /* Location.swift */; };
 		32E6DC342B33742A00813FE4 /* NewPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6DC332B33742A00813FE4 /* NewPlaceView.swift */; };
 		32E6DC372B33773E00813FE4 /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6DC362B33773E00813FE4 /* RatingCell.swift */; };
+		32F9F5572B4C5A050078FAA3 /* AddPlaceOnMapCell + ShadowAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9F5562B4C5A050078FAA3 /* AddPlaceOnMapCell + ShadowAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		32816B112B1E50F10018B9E1 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		32E6DC332B33742A00813FE4 /* NewPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceView.swift; sourceTree = "<group>"; };
 		32E6DC362B33773E00813FE4 /* RatingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
+		32F9F5562B4C5A050078FAA3 /* AddPlaceOnMapCell + ShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddPlaceOnMapCell + ShadowAnimation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				322451032B10EDF000A99E81 /* Date + extension.swift */,
 				32072A372B13B5830041C091 /* Cell + cellShadow.swift */,
 				324AE1B72B49C1C700E8995D /* String + extension.swift */,
+				32F9F5562B4C5A050078FAA3 /* AddPlaceOnMapCell + ShadowAnimation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				322450DE2B10C57B00A99E81 /* HomeViewController.swift in Sources */,
 				322450FD2B10D1E100A99E81 /* WelcomeViewController.swift in Sources */,
 				324AE1BC2B49D2F200E8995D /* SimpleMapViewController.swift in Sources */,
+				32F9F5572B4C5A050078FAA3 /* AddPlaceOnMapCell + ShadowAnimation.swift in Sources */,
 				322450F52B10CECB00A99E81 /* TabBarController.swift in Sources */,
 				3224510F2B1108C100A99E81 /* CollectionViewHeader.swift in Sources */,
 				321C83F12B1A4E9200F8CA62 /* AddressView.swift in Sources */,

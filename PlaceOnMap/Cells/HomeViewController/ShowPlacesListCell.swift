@@ -16,6 +16,7 @@ class ShowPlacesListCell: UICollectionViewCell {
     private let showPlacesListLabel: UILabel = {
        let label = UILabel()
         label.text = "Show 'poop' places list!"
+        label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label 
@@ -24,7 +25,7 @@ class ShowPlacesListCell: UICollectionViewCell {
     let numberOfPlacesLabel: UILabel = {
        let label = UILabel()
         label.text = "25 places total"
-        label.font = UIFont.systemFont(ofSize: 10)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 1
         label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
